@@ -1,8 +1,9 @@
 name: 'Kython'
 scopeName: 'kython'
+fileTypes': ['ky']
 type: 'tree-sitter'
 parser: 'tree-sitter-kython'
-fileTypes: ['ky']
+
 firstLineRegex: '#!.*kython[0-9\.]+$'
 
 folds: [

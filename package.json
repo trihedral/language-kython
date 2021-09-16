@@ -1,6 +1,6 @@
 {
   "name": "language-kython",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "engines": {
     "atom": "*"
   },
@@ -15,6 +15,6 @@
   "license": "MIT",
   "dependencies": {
     "atom-grammar-test": "^0.6.4",
-    "tree-sitter-kython": "^1.0.1"
+    "tree-sitter-kython": "^1.0.2"
   }
 }
