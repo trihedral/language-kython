@@ -1,0 +1,20 @@
+{
+  "name": "language-kython",
+  "version": "0.0.0",
+  "engines": {
+    "atom": "*",
+  },
+  "description": "Kython language support in Atom",
+  "keywords": [
+    "tree-sitter"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trihedral/language-kython"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "atom-grammar-test": "^0.6.4",
+    "tree-sitter-kython": "^1.0.0"
+  }
+}
