@@ -6,45 +6,6 @@ parser: 'tree-sitter-kython'
 
 firstLineRegex: '#!.*kython[0-9\.]+$'
 
-folds: [
-  {
-    type: ['if_statement']
-    start: {type: '{'}
-    end: {type: ['elif_clause', 'else_clause']}
-  },
-  {
-    type: [
-      'if_statement'
-      'elif_clause'
-      'else_clause'
-      'for_statement'
-      'try_statement'
-      'do_statement'
-      'with_statement'
-      'while_statement'
-      'class_definition'
-      'function_definition'
-      'async_function_definition'
-    ]
-    start: {type: '{', index: 0}
-    end: {type: '}', index: -1}
-  },
-  {
-    start: {type: '(', index: 0}
-    end: {type: ')', index: -1}
-  },
-  {
-    start: {type: '[', index: 0}
-    end: {type: ']', index: -1}
-  },
-  {
-    start: {type: '{', index: 0}
-    end: {type: '}', index: -1}
-  }
-]
-
-comments:
-  start: '// '
 
 scopes:
   'module': 'source.kython'
@@ -179,3 +140,44 @@ scopes:
   '"}"': 'punctuation.section.block.end.bracket.curly'
   '"("': 'punctuation.section.parens.begin.bracket.round'
   '")"': 'punctuation.section.parens.end.bracket.round'
+
+
+folds: [
+  {
+    type: ['if_statement']
+    start: {type: '{'}
+    end: {type: ['elif_clause', 'else_clause']}
+  },
+  {
+    type: [
+      'if_statement'
+      'elif_clause'
+      'else_clause'
+      'for_statement'
+      'try_statement'
+      'do_statement'
+      'with_statement'
+      'while_statement'
+      'class_definition'
+      'function_definition'
+      'async_function_definition'
+    ]
+    start: {type: '{', index: 0}
+    end: {type: '}', index: -1}
+  },
+  {
+    start: {type: '(', index: 0}
+    end: {type: ')', index: -1}
+  },
+  {
+    start: {type: '[', index: 0}
+    end: {type: ']', index: -1}
+  },
+  {
+    start: {type: '{', index: 0}
+    end: {type: '}', index: -1}
+  }
+]
+
+comments:
+  start: '// '
