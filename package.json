@@ -2,7 +2,7 @@
   "name": "language-kython",
   "version": "0.0.0",
   "engines": {
-    "atom": "*",
+    "atom": "*"
   },
   "description": "Kython language support in Atom",
   "keywords": [
