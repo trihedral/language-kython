@@ -66,7 +66,7 @@ scopes:
   'lambda_parameters > identifier': 'variable.parameter.function'
   'typed_parameter > identifier': 'variable.parameter.function'
 
-  'argument_list': 'meta.method-call.python'
+  'argument_list': 'meta.method-call.kython'
 
   '"if"': 'keyword.control'
   '"else"': 'keyword.control'
@@ -126,11 +126,11 @@ scopes:
   '">.>"': 'keyword.operator'
   'binary_operator > "@"': 'keyword.operator'
   'binary_operator > "@="': 'keyword.operator'
-  '"in"': 'keyword.operator.logical.python'
-  '"&&"': 'keyword.operator.logical.python'
-  '"||"': 'keyword.operator.logical.python'
-  '"!"': 'keyword.operator.logical.python'
-  '"is"': 'keyword.operator.logical.python'
+  '"in"': 'keyword.operator.logical.kython'
+  '"&&"': 'keyword.operator.logical.kython'
+  '"||"': 'keyword.operator.logical.kython'
+  '"!"': 'keyword.operator.logical.kython'
+  '"is"': 'keyword.operator.logical.kython'
   '"->"': 'keyword.control.return'
 
   '"["': 'punctuation.definition.begin.bracket.square'
