@@ -15,6 +15,6 @@
   "license": "MIT",
   "dependencies": {
     "atom-grammar-test": "^0.6.4",
-    "tree-sitter-kython": "^1.0.0"
+    "tree-sitter-kython": "^1.0.1"
   }
 }
