@@ -1,6 +1,6 @@
 name: 'Kython'
 scopeName: 'kython'
-fileTypes': ['ky']
+fileTypes: ['ky']
 type: 'tree-sitter'
 parser: 'tree-sitter-kython'
 
