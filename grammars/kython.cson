@@ -8,7 +8,6 @@ firstLineRegex: '#!.*kython[0-9\.]+$'
 
 
 scopes:
-  'module': 'source.kython'
 
   'comment': 'comment.line'
   'string': 'string.quoted'
@@ -66,7 +65,7 @@ scopes:
   'lambda_parameters > identifier': 'variable.parameter.function'
   'typed_parameter > identifier': 'variable.parameter.function'
 
-  'argument_list': 'meta.method-call.kython'
+  'argument_list': 'meta.method-call'
 
   '"if"': 'keyword.control'
   '"else"': 'keyword.control'
@@ -126,11 +125,11 @@ scopes:
   '">.>"': 'keyword.operator'
   'binary_operator > "@"': 'keyword.operator'
   'binary_operator > "@="': 'keyword.operator'
-  '"in"': 'keyword.operator.logical.kython'
-  '"&&"': 'keyword.operator.logical.kython'
-  '"||"': 'keyword.operator.logical.kython'
-  '"!"': 'keyword.operator.logical.kython'
-  '"is"': 'keyword.operator.logical.kython'
+  '"in"': 'keyword.operator.logical'
+  '"&&"': 'keyword.operator.logical'
+  '"||"': 'keyword.operator.logical'
+  '"!"': 'keyword.operator.logical'
+  '"is"': 'keyword.operator.logical'
   '"->"': 'keyword.control.return'
 
   '"["': 'punctuation.definition.begin.bracket.square'
