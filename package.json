@@ -1,25 +1,4 @@
 {
-  "_from": "https://www.atom.io/api/packages/language-kython/versions/0.9.0/tarball",
-  "_id": "language-kython@0.9.0",
-  "_inBundle": false,
-  "_integrity": "sha512-R9DVZiEvmZV8Q+80duXfs4nGclqsoYT5zgC/46XB9X1hnIbWZL3PmeMEYC8mpvXfseaxvkH01tMyIiBpF7LHsg==",
-  "_location": "/language-kython",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "remote",
-    "raw": "https://www.atom.io/api/packages/language-kython/versions/0.9.0/tarball",
-    "rawSpec": "https://www.atom.io/api/packages/language-kython/versions/0.9.0/tarball",
-    "saveSpec": "https://www.atom.io/api/packages/language-kython/versions/0.9.0/tarball",
-    "fetchSpec": "https://www.atom.io/api/packages/language-kython/versions/0.9.0/tarball"
-  },
-  "_requiredBy": [
-    "#USER",
-    "/"
-  ],
-  "_resolved": "https://www.atom.io/api/packages/language-kython/versions/0.9.0/tarball",
-  "_shasum": "72344d21da2ac50f7413395936195d6cbc428d1c",
-  "_spec": "https://www.atom.io/api/packages/language-kython/versions/0.9.0/tarball",
-  "_where": "C:\\Users\\kyled\\AppData\\Local\\Temp\\apm-install-dir-2021816-1784-1wmb8mn.z4lp",
   "bugs": {
     "url": "https://github.com/trihedral/language-kython/issues"
   },
@@ -41,7 +20,7 @@
   "name": "language-kython",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/trihedral/language-kython.git"
+    "url": "https://github.com/trihedral/language-kython.git"
   },
   "version": "0.10.0"
 }
