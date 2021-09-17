@@ -1,5 +1,5 @@
 name: 'Kython'
-scopeName: 'kython'
+scopeName: 'source.kython'
 fileTypes: ['ky']
 type: 'tree-sitter'
 parser: 'tree-sitter-kython'
