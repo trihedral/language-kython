@@ -1,182 +1,1714 @@
-name: 'Kython'
-scopeName: 'source.kython'
-fileTypes: ['ky']
-type: 'tree-sitter'
-parser: 'tree-sitter-kython'
-
-firstLineRegex: '#!.*kython[0-9\.]+$'
-
-
-scopes:
-
-  'comment': 'comment.line'
-  'string': 'string.quoted'
-  'escape_sequence': 'constant.character.escape'
-  'interpolation': 'meta.embedded'
-  'interpolation > "{"': 'punctuation.section.embedded'
-  'interpolation > "}"': 'punctuation.section.embedded'
-
-  'class_definition > identifier': 'entity.name.type.class'
-  'function_definition > identifier': 'entity.name.function.definition'
-  'call > identifier:nth-child(0)': [
-    {match: '^(abs|all|any|ascii|bin|bool|breakpoint|bytearray|bytes|callable|chr|classmethod|compile|complex|delattr|dict|dir|divmod|enumerate|eval|exec|filter|float|format|frozenset|getattr|globals|hasattr|hash|help|hex|id|input|int|isinstance|issubclass|iter|len|list|locals|map|max|memoryview|min|next|object|oct|open|ord|pow|kyo|kyi|property|range|repr|reversed|round|set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|vars|zip|__import__)$',
-    scopes: 'support.function.call'},
-    {match: '^[A-Z]', scopes: 'support.type.contructor'}
-    'entity.name.function.call'
-   ]
-  'call > attribute > identifier:nth-child(2)': 'entity.name.function'
-
-  'identifier': [
-    {match:
-      '^(BaseException|Exception|TypeError|StopAsyncIteration|StopIteration|ImportError|ModuleNotFoundError|OSError|ConnectionError|BrokenPipeError|ConnectionAbortedError|ConnectionRefusedError|ConnectionResetError|BlockingIOError|ChildProcessError|FileExistsError|FileNotFoundError|IsADirectoryError|NotADirectoryError|InterruptedError|PermissionError|ProcessLookupError|TimeoutError|EOFError|RuntimeError|RecursionError|NotImplementedError|NameError|UnboundLocalError|AttributeError|SyntaxError|IndentationError|TabError|LookupError|IndexError|KeyError|ValueError|UnicodeError|UnicodeEncodeError|UnicodeDecodeError|UnicodeTranslateError|AssertionError|ArithmeticError|FloatingPointError|OverflowError|ZeroDivisionError|SystemError|ReferenceError|BufferError|MemoryError|Warning|UserWarning|DeprecationWarning|PendingDeprecationWarning|SyntaxWarning|RuntimeWarning|FutureWarning|ImportWarning|UnicodeWarning|BytesWarning|ResourceWarning|GeneratorExit|SystemExit|KeyboardInterrupt)$'
-    scopes: 'support.type.exception'},
-    {match: '^(self)', scopes: 'entity.name.variable.self'}
-  ]
-
-  'attribute > identifier:nth-child(2)': 'variable.other.object.property'
-
-  'decorator': 'entity.name.function.decorator'
-
-  'none': 'constant.language'
-  'true': 'constant.language'
-  'false': 'constant.language'
-  'integer': 'constant.numeric'
-  'float': 'constant.numeric'
-
-  'type > identifier': 'support.storage.type'
-
-  'class_definition > argument_list > attribute': 'entity.other.inherited-class'
-  'class_definition > argument_list > identifier': 'entity.other.inherited-class'
-  'class_definition > argument_list > keyword_argument > attribute': 'entity.other.inherited-class'
-  'class_definition > argument_list > keyword_argument > identifier:nth-child(2)': 'entity.other.inherited-class'
-
-  '"class"': 'storage.type.class'
-  '"def"': 'storage.type.function'
-  '"lambda"': 'storage.type.function'
-
-  '"global"': 'storage.modifier.global'
-  '"nonlocal"': 'storage.modifier.nonlocal'
-
-  'parameters > identifier': 'variable.parameter.function'
-  'parameters > list_splat > identifier': 'variable.parameter.function'
-  'parameters > dictionary_splat > identifier': 'variable.parameter.function'
-  'default_parameter > identifier:nth-child(0)': 'variable.parameter.function'
-  'keyword_argument > identifier:nth-child(0)': 'variable.parameter.function'
-  'lambda_parameters > identifier': 'variable.parameter.function'
-  'typed_parameter > identifier': 'variable.parameter.function'
-
-  'argument_list': 'meta.method-call'
-
-  '"if"': 'keyword.control'
-  '"else"': 'keyword.control'
-  '"do"': 'keyword.control'
-  '"while"': 'keyword.control'
-  '"for"': 'keyword.control'
-  '"return"': 'keyword.control'
-  '"break"': 'keyword.control'
-  '"continue"': 'keyword.control'
-  '"raise"': 'keyword.control'
-  '"yield"': 'keyword.control'
-  '"await"': 'keyword.control'
-  '"async"': 'keyword.control'
-  '"try"': 'keyword.control'
-  '"except"': 'keyword.control'
-  '"with"': 'keyword.control'
-  '"as"': 'keyword.control'
-  '"finally"': 'keyword.control'
-  '"import"': 'keyword.control'
-  '"from"': 'keyword.control'
-
-  '"kyo"': 'keyword.other'
-  '"kyi"': 'keyword.other'
-  '"assert"': 'keyword.other'
-  '"exec"': 'keyword.other'
-  '"del"': 'keyword.other'
-
-  '"+"': 'keyword.operator'
-  '"-"': 'keyword.operator'
-  '"*"': 'keyword.operator'
-  '"/"': 'keyword.operator'
-  '"%"': 'keyword.operator'
-  '"**"': 'keyword.operator'
-  '"//"': 'keyword.operator'
-  '"=="': 'keyword.operator'
-  '"!="': 'keyword.operator'
-  '"<>"': 'keyword.operator'
-  '">"': 'keyword.operator'
-  '"<"': 'keyword.operator'
-  '">="': 'keyword.operator'
-  '"<="': 'keyword.operator'
-  '"="': 'keyword.operator'
-  '"+="': 'keyword.operator'
-  '"-="': 'keyword.operator'
-  '"*="': 'keyword.operator'
-  '"/="': 'keyword.operator'
-  '"%="': 'keyword.operator'
-  '"**="': 'keyword.operator'
-  '"//="': 'keyword.operator'
-  '"&"': 'keyword.operator'
-  '"|"': 'keyword.operator'
-  '"^"': 'keyword.operator'
-  '"~"': 'keyword.operator'
-  '"<<"': 'keyword.operator'
-  '">>"': 'keyword.operator'
-  '"<.<"': 'keyword.operator'
-  '">.>"': 'keyword.operator'
-  'binary_operator > "@"': 'keyword.operator'
-  'binary_operator > "@="': 'keyword.operator'
-  '"in"': 'keyword.operator.logical'
-  '"&&"': 'keyword.operator.logical'
-  '"||"': 'keyword.operator.logical'
-  '"!"': 'keyword.operator.logical'
-  '"is"': 'keyword.operator.logical'
-  '"->"': 'keyword.control.return'
-
-  '"["': 'punctuation.definition.begin.bracket.square'
-  '"]"': 'punctuation.definition.end.bracket.square'
-  '","': 'punctuation.separator.delimiter'
-  '"{"': 'punctuation.section.block.begin.bracket.curly'
-  '"}"': 'punctuation.section.block.end.bracket.curly'
-  '"("': 'punctuation.section.parens.begin.bracket.round'
-  '")"': 'punctuation.section.parens.end.bracket.round'
-
-
-folds: [
-  {
-    type: ['if_statement']
-    start: {type: '{'}
-    end: {type: ['elif_clause', 'else_clause']}
-  },
-  {
-    type: [
-      'if_statement'
-      'elif_clause'
-      'else_clause'
-      'for_statement'
-      'try_statement'
-      'do_statement'
-      'with_statement'
-      'while_statement'
-      'class_definition'
-      'function_definition'
-      'async_function_definition'
-    ]
-    start: {type: '{', index: 0}
-    end: {type: '}', index: -1}
-  },
-  {
-    start: {type: '(', index: 0}
-    end: {type: ')', index: -1}
-  },
-  {
-    start: {type: '[', index: 0}
-    end: {type: ']', index: -1}
-  },
-  {
-    start: {type: '{', index: 0}
-    end: {type: '}', index: -1}
-  }
+'scopeName': 'source.kython'
+'name': 'Kython'
+'fileTypes': [
+  'py'
 ]
 
-comments:
-  start: '// '
+'firstLineMatch': '#!.*kython[0-9\.]*$'
+
+'patterns': [
+  {
+    'include': '#line_comments'
+  }
+  {
+    'include': '#block_comments'
+  }
+  {
+    'include': '#language_variables'
+  }
+  {
+    'match': '\\b(?i:(0x\\h*)L)'
+    'name': 'constant.numeric.integer.long.hexadecimal.kython'
+  }
+  {
+    'match': '\\b(?i:(0x\\h*))'
+    'name': 'constant.numeric.integer.hexadecimal.kython'
+  }
+  {
+    'match': '\\b(?i:(0o?[0-7]+)L)'
+    'name': 'constant.numeric.integer.long.octal.kython'
+  }
+  {
+    'match': '\\b(?i:(0o?[0-7]+))'
+    'name': 'constant.numeric.integer.octal.kython'
+  }
+  {
+    'match': '\\b(?i:(0b[01]+)L)',
+    'name': 'constant.numeric.integer.long.binary.kython'
+  }
+  {
+    'match': '\\b(?i:(0b[01]+))',
+    'name': 'constant.numeric.integer.binary.kython'
+  }
+  {
+    'match': '\\b(?i:(((\\d+(\\.(?=[^a-zA-Z_])\\d*)?|(?<=[^0-9a-zA-Z_])\\.\\d+)(e[\\-\\+]?\\d+)?))J)'
+    'name': 'constant.numeric.complex.kython'
+  }
+  {
+    'match': '\\b(?i:(\\d+\\.\\d*(e[\\-\\+]?\\d+)?))(?=[^a-zA-Z_])'
+    'name': 'constant.numeric.float.kython'
+  }
+  {
+    'match': '(?<=[^0-9a-zA-Z_])(?i:(\\.\\d+(e[\\-\\+]?\\d+)?))'
+    'name': 'constant.numeric.float.kython'
+  }
+  {
+    'match': '\\b(?i:(\\d+e[\\-\\+]?\\d+))'
+    'name': 'constant.numeric.float.kython'
+  }
+  {
+    'match': '\\b(?i:([1-9]+[0-9]*|0)L)'
+    'name': 'constant.numeric.integer.long.decimal.kython'
+  }
+  {
+    'match': '\\b([1-9]+[0-9]*|0)'
+    'name': 'constant.numeric.integer.decimal.kython'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'storage.modifier.global.kython'
+    'match': '\\b(global)\\b'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'storage.modifier.nonlocal.kython'
+    'match': '\\b(nonlocal)\\b'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'keyword.control.import.kython'
+      '2':
+        'name': 'keyword.control.import.from.kython'
+    'match': '\\b(?:(import)|(from))\\b'
+  }
+  {
+    'comment': 'keywords that delimit flow conditionals'
+    'name': 'keyword.control.conditional.kython'
+    'match': '\\b(if|else)\\b'
+  }
+  {
+    'comment': 'keywords that delimit an exception'
+    'name': 'keyword.control.exception.kython'
+    'match': '\\b(except|finally|try|raise)\\b'
+  }
+  {
+    'comment': 'keywords that delimit loops'
+    'name': 'keyword.control.repeat.kython'
+    'match': '\\b(for|do|while)\\b'
+  }
+  {
+    'comment': 'keywords that alter flow from within a block'
+    'name': 'keyword.control.statement.kython'
+    'match': '\\b(with|break|continue|return|yield(\\s+from)?|await)\\b'
+  }
+  {
+    'comment': 'keyword operators that evaluate to True or False'
+    'match': '\\b(&&|in|is|!|\\|\\|)\\b'
+    'name': 'keyword.operator.logical.kython'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'keyword.other.kython'
+    'comment': 'keywords that haven\'t fit into other groups (yet).'
+    'match': '\\b(as|assert|del|exec|kyo|kyi)\\b'
+  }
+  {
+    'match': '<>'
+    'name': 'invalid.deprecated.operator.kython'
+  }
+  {
+    'match': '\\+\\=|-\\=|\\*\\=|/\\=|%\\=|&\\=|\\|\\=|\\^\\=|>>\\=|<<\\=|\\*\\*\\=|>>|<<|<<<|<:'
+    'name': 'keyword.operator.assignment.augmented.kython'
+  }
+  {
+    'match': '<\\=|>\\=|\\=\\=|<|>|\\!\\='
+    'name': 'keyword.operator.comparison.kython'
+  }
+  {
+    'match': '\\+|\\-|\\*|\\*\\*|/|%|<.<|>.>|&|\\||\\^|~'
+    'name': 'keyword.operator.arithmetic.kython'
+  }
+  {
+    'match': '\\='
+    'name': 'keyword.operator.assignment.kython'
+  }
+  {
+    'begin': '^\\s*(class)\\s+(?=[a-zA-Z_][a-zA-Z_0-9]*\\s*\\:)'
+    'beginCaptures':
+      '1':
+        'name': 'storage.type.class.kython'
+    'contentName': 'entity.name.type.class.kython'
+    'end': '\\s*(:)'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.section.class.begin.kython'
+    'name': 'meta.class.old-style.kython'
+    'patterns': [
+      {
+        'include': '#entity_name_class'
+      }
+    ]
+  }
+  {
+    'begin': '^\\s*(class)\\s+(?=[a-zA-Z_][a-zA-Z_0-9]*\\s*\\()'
+    'beginCaptures':
+      '1':
+        'name': 'storage.type.class.kython'
+    'end': '(\\))\\s*(?:(\\:)|(.*$\\n?))'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.definition.inheritance.end.kython'
+      '2':
+        'name': 'punctuation.section.class.begin.kython'
+      '3':
+        'name': 'invalid.illegal.missing-section-begin.kython'
+    'name': 'meta.class.kython'
+    'patterns': [
+      {
+        'begin': '(?=[A-Za-z_][A-Za-z0-9_]*)'
+        'contentName': 'entity.name.type.class.kython'
+        'end': '(?![A-Za-z0-9_])'
+        'patterns': [
+          {
+            'include': '#entity_name_class'
+          }
+        ]
+      }
+      {
+        'begin': '(\\()'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.definition.inheritance.begin.kython'
+        'contentName': 'meta.class.inheritance.kython'
+        'end': '(?=\\)|:)'
+        'patterns': [
+          {
+            'begin': '(?<=\\(|,)\\s*'
+            'contentName': 'entity.other.inherited-class.kython'
+            'end': '\\s*(?:(,)|(?=\\)))'
+            'endCaptures':
+              '1':
+                'name': 'punctuation.separator.inheritance.kython'
+            'patterns': [
+              {
+                'include': '$self'
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'begin': '^\\s*(class)\\s+(?=[a-zA-Z_][a-zA-Z_0-9])'
+    'beginCaptures':
+      '1':
+        'name': 'storage.type.class.kython'
+    'end': '(\\()|(\\s*$\\n?|#.*$\\n?)'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.definition.inheritance.begin.kython'
+      '2':
+        'name': 'invalid.illegal.missing-inheritance.kython'
+    'name': 'meta.class.kython'
+    'patterns': [
+      {
+        'begin': '(?=[A-Za-z_][A-Za-z0-9_]*)'
+        'contentName': 'entity.name.type.class.kython'
+        'end': '(?![A-Za-z0-9_])'
+        'patterns': [
+          {
+            'include': '#entity_name_function'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'begin': '^\\s*(?:(async)\\s+)?(def)\\s+(?=[A-Za-z_][A-Za-z0-9_]*)'
+    'beginCaptures':
+      '1':
+        'name': 'storage.modifier.async.kython'
+      '2':
+        'name': 'storage.type.function.kython'
+    'end': '{'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.function.begin.kython'
+    'name': 'meta.function.kython'
+    'patterns': [
+      {
+        'begin': '(?=[A-Za-z_][A-Za-z0-9_]*)'
+        'contentName': 'entity.name.function.kython'
+        'end': '(?![A-Za-z0-9_])'
+        'patterns': [
+          {
+            'include': '#entity_name_function'
+          }
+        ]
+      }
+      {
+        'begin': '\\('
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.parameters.begin.kython'
+        'end': '\\)'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.parameters.end.kython'
+        'contentName': 'meta.function.parameters.kython'
+        'patterns': [
+          {
+            'include': '#line_comments'
+            'include': '#block_comments'
+          }
+          {
+            # param = 3
+            # param: int = 3
+            'begin': '(?:(\\*{0,2})|\\b)([a-zA-Z_][\\w_]*)\\s*(?:(:)\\s*([a-zA-Z_][\\w_]*))?\\s*(=)\\s*'
+            'beginCaptures':
+              '1':
+                'name': 'keyword.operator.unpacking.arguments.kython'
+              '2':
+                'name': 'variable.parameter.function.kython'
+              '3':
+                'name': 'punctuation.separator.kython'
+              '4':
+                'name': 'storage.type.kython'
+              '5':
+                'name': 'keyword.operator.assignment.kython'
+            'end': '(?!\\G)'
+            'patterns': [
+              {
+                'include': '$self'
+              }
+            ]
+          }
+          {
+            # param
+            # param: int
+            'match': '(?:(\\*{0,2})|\\b)([a-zA-Z_][\\w_]*)\\s*(?:(:)\\s*([a-zA-Z_][\\w_]*))?'
+            'captures':
+              '1':
+                'name': 'keyword.operator.unpacking.arguments.kython'
+              '2':
+                'name': 'variable.parameter.function.kython'
+              '3':
+                'name': 'punctuation.separator.kython'
+              '4':
+                'name': 'storage.type.kython'
+          }
+          {
+            'match': ','
+            'name': 'punctuation.separator.parameters.kython'
+          }
+        ]
+      }
+      {
+        'match': '(->)\\s*([A-Za-z_][\\w_]*)(?=\\s*:)'
+        'captures':
+          '1':
+            'name': 'keyword.operator.function-annotation.kython'
+          '2':
+            'name': 'storage.type.kython'
+      }
+    ]
+  }
+  {
+    'begin': '\\b(lambda)\\b'
+    'beginCaptures':
+      '1':
+        'name': 'storage.type.function.inline.kython'
+    'end': ':'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.function.begin.kython'
+    'name': 'meta.function.inline.kython'
+    'patterns': [
+      {
+        'begin': '\\G'
+        'end': '(?=\\:)'
+        'contentName': 'meta.function.inline.parameters.kython'
+        'patterns': [
+          {
+            # param = 3
+            'begin': '(?:(\\*{0,2})|\\b)([a-zA-Z_][\\w_]*)\\s*(=)\\s*'
+            'beginCaptures':
+              '1':
+                'name': 'keyword.operator.unpacking.arguments.kython'
+              '2':
+                'name': 'variable.parameter.function.kython'
+              '3':
+                'name': 'keyword.operator.assignment.kython'
+            'end': '(?!\\G)'
+            'patterns': [
+              {
+                'include': '$self'
+              }
+            ]
+          }
+          {
+            # param
+            'match': '(?:(\\*{0,2})|\\b)([a-zA-Z_][\\w_]*)\\b'
+            'captures':
+              '1':
+                'name': 'keyword.operator.unpacking.arguments.kython'
+              '2':
+                'name': 'variable.parameter.function.kython'
+          }
+          {
+            'match': ','
+            'name': 'punctuation.separator.parameters.kython'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'begin': '^\\s*(?=@\\s*[A-Za-z_][A-Za-z0-9_]*(?:\\.[a-zA-Z_][a-zA-Z_0-9]*)*\\s*\\()'
+    'comment': 'a decorator may be a function call which returns a decorator.'
+    'end': '(\\))'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.definition.arguments.end.kython'
+    'name': 'meta.function.decorator.kython'
+    'patterns': [
+      {
+        'begin': '(?=(@)\\s*[A-Za-z_][A-Za-z0-9_]*(?:\\.[A-Za-z_][A-Za-z0-9_]*)*\\s*\\()'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.definition.decorator.kython'
+        'contentName': 'entity.name.function.decorator.kython'
+        'end': '(?=\\s*\\()'
+        'patterns': [
+          {
+            'include': '#dotted_name'
+          }
+        ]
+      }
+      {
+        'begin': '(\\()'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.definition.arguments.begin.kython'
+        'contentName': 'meta.function.decorator.arguments.kython'
+        'end': '(?=\\))'
+        'patterns': [
+          {
+            'include': '#keyword_arguments'
+          }
+          {
+            'include': '$self'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'begin': '^\\s*(?=@\\s*[A-Za-z_][A-Za-z0-9_]*(?:\\.[a-zA-Z_][a-zA-Z_0-9]*)*)'
+    'contentName': 'entity.name.function.decorator.kython'
+    'end': '(?=\\s|$\\n?|#)'
+    'name': 'meta.function.decorator.kython'
+    'patterns': [
+      {
+        'begin': '(?=(@)\\s*[A-Za-z_][A-Za-z0-9_]*(\\.[A-Za-z_][A-Za-z0-9_]*)*)'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.definition.decorator.kython'
+        'end': '(?=\\s|$\\n?|#)'
+        'patterns': [
+          {
+            'include': '#dotted_name'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'include': '#function_calls'
+  }
+  {
+    'include': '#method_calls'
+  }
+  {
+    'include': '#objects'
+  }
+  {
+    'include': '#properties'
+  }
+  {
+    'begin': '(?=[A-Za-z_][A-Za-z0-9_]*(?:\\.[a-zA-Z_][a-zA-Z_0-9]*)*\\s*\\[)'
+    'end': '(\\])'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.definition.arguments.end.kython'
+    'name': 'meta.item-access.kython'
+    'patterns': [
+      {
+        'begin': '(?=[A-Za-z_][A-Za-z0-9_]*(?:\\.[A-Za-z_][A-Za-z0-9_]*)*\\s*\\[)'
+        'end': '(?=\\s*\\[)'
+        'patterns': [
+          {
+            'include': '#dotted_name'
+          }
+        ]
+      }
+      {
+        'begin': '(\\[)'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.definition.arguments.begin.kython'
+        'contentName': 'meta.item-access.arguments.kython'
+        'end': '(?=\\])'
+        'patterns': [
+          {
+            'include': '$self'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'begin': '(?<=\\)|\\])\\s+(\\[)'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.definition.arguments.begin.kython'
+    'contentName': 'meta.item-access.arguments.kython'
+    'end': '(\\])'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.definition.arguments.end.kython'
+    'name': 'meta.item-access.kython'
+    'patterns': [
+      {
+        'include': '$self'
+      }
+    ]
+  }
+  {
+    'captures':
+      '1':
+        'name': 'storage.type.class.kython'
+    'match': '\\b(class)\\b'
+  }
+  {
+    'include': '#line_continuation'
+  }
+  {
+    'match': '\\b(None|True|False|Ellipsis|NotImplemented)\\b'
+    'name': 'constant.language.kython'
+  }
+  {
+    'include': '#string_quoted_double'
+  }
+  {
+    'begin': '(\\()'
+    'end': '(\\))'
+    'patterns': [
+      {
+        'include': '$self'
+      }
+    ]
+  }
+  {
+    'captures':
+      '1':
+        'name': 'punctuation.definition.list.begin.kython'
+      '2':
+        'name': 'meta.empty-list.kython'
+      '3':
+        'name': 'punctuation.definition.list.end.kython'
+    'match': '(\\[)(\\s*(\\]))\\b'
+  }
+  {
+    'begin': '(\\[)'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.definition.list.begin.kython'
+    'end': '(\\])'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.definition.list.end.kython'
+    'name': 'meta.structure.list.kython'
+    'patterns': [
+      {
+        'begin': '(?<=\\[|\\,)\\s*(?![\\],])'
+        'contentName': 'meta.structure.list.item.kython'
+        'end': '\\s*(?:(,)|(?=\\]))'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.separator.list.kython'
+        'patterns': [
+          {
+            'include': '$self'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'captures':
+      '1':
+        'name': 'punctuation.definition.tuple.begin.kython'
+      '2':
+        'name': 'meta.empty-tuple.kython'
+      '3':
+        'name': 'punctuation.definition.tuple.end.kython'
+    'match': '(\\()(\\s*(\\)))'
+    'name': 'meta.structure.tuple.kython'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'punctuation.definition.dictionary.begin.kython'
+      '2':
+        'name': 'meta.empty-dictionary.kython'
+      '3':
+        'name': 'punctuation.definition.dictionary.end.kython'
+    'match': '(\\{)(\\s*(\\}))'
+    'name': 'meta.structure.dictionary.kython'
+  }
+  {
+    'begin': '(\\{)'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.definition.dictionary.begin.kython'
+    'end': '(\\})'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.definition.dictionary.end.kython'
+    'name': 'meta.structure.dictionary.kython'
+    'patterns': [
+      {
+        'begin': '(?<=\\{|\\,|^)\\s*(?![\\},])'
+        'contentName': 'meta.structure.dictionary.key.kython'
+        'end': '\\s*(?:(?=\\})|(\\:))'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.separator.valuepair.dictionary.kython'
+        'patterns': [
+          {
+            'include': '$self'
+          }
+        ]
+      }
+      {
+        'begin': '(?<=\\:|^)\\s*'
+        'contentName': 'meta.structure.dictionary.value.kython'
+        'end': '\\s*(?:(?=\\})|(,))'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.separator.dictionary.kython'
+        'patterns': [
+          {
+            'include': '$self'
+          }
+        ]
+      }
+    ]
+  }
+]
+'repository':
+  'builtin_exceptions':
+    'match': '(?x)\\b(\n\t\t\t\t(\n\t\t\t\t\tArithmetic|Assertion|Attribute|BlockingIO|BrokenPipe|Buffer|ChildProcess|\n\t\t\t\t\tConnection(Aborted|Refused|Reset)?|EOF|Environment|FileExists|\n\t\t\t\t\tFileNotFound|FloatingPoint|Interrupted|IO|IsADirectoryError|\n\t\t\t\t\tImport|Indentation|Index|Key|Lookup|Memory|Name|NotADirectory|\n\t\t\t\t\tNotImplemented|OS|Overflow|Permission|ProcessLookup|Recursion|Reference|\n\t\t\t\t\tRuntime|Standard|Syntax|System|Tab|Timeout|Type|UnboundLocal|\n\t\t\t\t\tUnicode(Encode|Decode|Translate)?|Value|VMS|Windows|ZeroDivision\n\t\t\t\t)Error|\n\t\t\t\t((Pending)?Deprecation|Runtime|Syntax|User|Future|Import|Unicode|Bytes)?Warning|\n\t\t\t\t(Base)?Exception|\n\t\t\t\tSystemExit|StopAsyncIteration|StopIteration|NotImplemented|KeyboardInterrupt|GeneratorExit\n\t\t\t)\\b'
+    'name': 'support.type.exception.kython'
+  'builtin_functions':
+    'match': '(?x)\\b(__import__|abs|all|any|ascii|bin|bool|bytearray|bytes|callable|chr|classmethod|compile|complex|delattr|dict|dir|divmod|enumerate|eval|exec|filter|float|format|frozenset|getattr|globals|hasattr|hash|help|hex|id|input|int|isinstance|issubclass|iter|len|list|locals|map|max|memoryview|min|next|object|oct|open|ord|pow|print|property|range|repr|reversed|round|set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|vars|zip|file|long|raw_input|reduce|reload|unichr|unicode|xrange|apply|buffer|coerce|intern|execfile)\\b'
+    'name': 'support.function.builtin.kython'
+  'builtin_types':
+    'match': '(?x)\\b(\n\t\t\t\tbasestring|bool|buffer|bytearray|bytes|complex|dict|float|frozenset|int|\n\t\t\t\tlist|long|memoryview|object|range|set|slice|str|tuple|unicode|xrange\n\t\t\t)\\b'
+    'name': 'support.type.kython'
+  'docstrings':
+    'patterns': [
+      {
+        'begin': '^\\s*(?=[uU]?[rR]?""")'
+        'end': '(?<=""")'
+        'name': 'comment.block.kython'
+        'patterns': [
+          {
+            'include': '#string_quoted_double'
+          }
+        ]
+      }
+    ]
+  'function_calls':
+    'patterns': [
+      {
+        'begin': '(?:([A-Za-z_][A-Za-z0-9_]*)|(?<=\\)|\\]))\\s*(\\()'
+        'beginCaptures':
+          '1':
+            'patterns': [
+              {
+                'include': '#builtin_functions'
+              }
+              {
+                'include': '#function_names'
+              }
+            ]
+          '2':
+            'name': 'punctuation.definition.arguments.begin.bracket.round.kython'
+        'end': '\\)'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.arguments.end.bracket.round.kython'
+        'name': 'meta.function-call.kython'
+        'contentName': 'meta.function-call.arguments.kython'
+        'patterns': [
+          {
+            'include': '#keyword_arguments'
+          }
+          {
+            'match': ','
+            'name': 'punctuation.separator.arguments.kython'
+          }
+          {
+            'include': '$self'
+          }
+        ]
+      }
+    ]
+  'dotted_name':
+    'begin': '(?=[A-Za-z_][A-Za-z0-9_]*(?:\\.[A-Za-z_][A-Za-z0-9_]*)*)'
+    'end': '(?![A-Za-z0-9_\\.])'
+    'patterns': [
+      {
+        'begin': '(\\.)(?=[A-Za-z_][A-Za-z0-9_]*)'
+        'end': '(?![A-Za-z0-9_])'
+        'patterns': [
+          {
+            'include': '#magic_function_names'
+          }
+          {
+            'include': '#magic_variable_names'
+          }
+          {
+            'include': '#illegal_names'
+          }
+          {
+            'include': '#generic_names'
+          }
+        ]
+      }
+      {
+        'begin': '(?<!\\.)(?=[A-Za-z_][A-Za-z0-9_]*)'
+        'end': '(?![A-Za-z0-9_])'
+        'patterns': [
+          {
+            'include': '#builtin_functions'
+          }
+          {
+            'include': '#builtin_types'
+          }
+          {
+            'include': '#builtin_exceptions'
+          }
+          {
+            'include': '#illegal_names'
+          }
+          {
+            'include': '#magic_function_names'
+          }
+          {
+            'include': '#magic_variable_names'
+          }
+          {
+            'include': '#language_variables'
+          }
+          {
+            'include': '#generic_names'
+          }
+        ]
+      }
+    ]
+  'entity_name_class':
+    'patterns': [
+      {
+        'include': '#illegal_names'
+      }
+      {
+        'include': '#generic_names'
+      }
+    ]
+  'entity_name_function':
+    'patterns': [
+      {
+        'include': '#magic_function_names'
+      }
+      {
+        'include': '#illegal_names'
+      }
+      {
+        'include': '#generic_names'
+      }
+    ]
+  'escaped_char':
+    'match': '''(?x)
+      (\\\\x[0-9A-Fa-f]{2})|
+      (\\\\[0-7]{3})|(\\\\\\n)|
+      (\\\\\\\\)|
+      (\\\\\\")|
+      (\\\\\')|
+      (\\\\a)|
+      (\\\\b)|
+      (\\\\f)|
+      (\\\\n)|
+      (\\\\r)|
+      (\\\\t)|
+      (\\\\v)|
+      ({{|}})
+    '''
+    'captures':
+      '1':
+        'name': 'constant.character.escape.hex.kython'
+      '2':
+        'name': 'constant.character.escape.octal.kython'
+      '3':
+        'name': 'constant.character.escape.newline.kython'
+      '4':
+        'name': 'constant.character.escape.backlash.kython'
+      '5':
+        'name': 'constant.character.escape.double-quote.kython'
+      '6':
+        'name': 'constant.character.escape.single-quote.kython'
+      '7':
+        'name': 'constant.character.escape.bell.kython'
+      '8':
+        'name': 'constant.character.escape.backspace.kython'
+      '9':
+        'name': 'constant.character.escape.formfeed.kython'
+      '10':
+        'name': 'constant.character.escape.linefeed.kython'
+      '11':
+        'name': 'constant.character.escape.return.kython'
+      '12':
+        'name': 'constant.character.escape.tab.kython'
+      '13':
+        'name': 'constant.character.escape.vertical-tab.kython'
+      '14':
+        'name': 'constant.character.escape.curly-bracket.kython'
+  'escaped_unicode_char':
+    'captures':
+      '1':
+        'name': 'constant.character.escape.unicode.16-bit-hex.kython'
+      '2':
+        'name': 'constant.character.escape.unicode.32-bit-hex.kython'
+      '3':
+        'name': 'constant.character.escape.unicode.name.kython'
+    'match': '(\\\\U[0-9A-Fa-f]{8})|(\\\\u[0-9A-Fa-f]{4})|(\\\\N\\{[a-zA-Z ]+\\})'
+  'function_names':
+    'patterns': [
+      {
+        'include': '#magic_function_names'
+      }
+      {
+        'include': '#illegal_names'
+      }
+      {
+        'match': '[a-zA-Z_][a-zA-Z0-9_]*'
+        'name': 'entity.name.function.kython'
+      }
+    ]
+  'generic_names':
+    'match': '[A-Za-z_][A-Za-z0-9_]*'
+  'illegal_names':
+    'match': '\\b(and|as|assert|break|class|continue|def|del|do|else|except|exec|finally|for|from|global|if|import|in|is|kyi|kyo|lambda|nonlocal|not|or|raise|return|try|while|with|yield|await|async)\\b'
+    'name': 'invalid.illegal.name.kython'
+  'keyword_arguments':
+    'begin': '\\b([a-zA-Z_][a-zA-Z_0-9]*)\\s*(=)(?!=)'
+    'beginCaptures':
+      '1':
+        'name': 'variable.parameter.function.kython'
+      '2':
+        'name': 'keyword.operator.assignment.kython'
+    'end': '\\s*(?:(,)|(?=$\\n?|[\\)\\:]))'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.separator.parameters.kython'
+    'patterns': [
+      {
+        'include': '$self'
+      }
+    ]
+  'language_variables':
+    'match': '\\b(self|cls)\\b'
+    'name': 'variable.language.self.kython'
+  'line_comments':
+    'begin': '(^[ \\t]+)?(?=//)'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.whitespace.comment.leading.kython'
+    'end': '(?!\\G)'
+    'patterns': [
+      {
+        'begin': '//'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.kython'
+        'end': '\\n'
+        'name': 'comment.line.slash-slash.kython'
+      }
+    ]
+  'block_comments':
+    'begin': '(^[ \\t]+)?(?=/\\*)'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.whitespace.comment.blockcomment.leading.kython'
+    'end': '(?!\\G)'
+    'patterns': [
+      {
+        'begin': '/\\*'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.blockcomment.kython'
+        'end': '\\*/'
+        'name': 'comment.line.slash-star.kython'
+      }
+    ]
+  'line_continuation':
+    'captures':
+      '1':
+        'name': 'punctuation.separator.continuation.line.kython'
+      '2':
+        'name': 'invalid.illegal.unexpected-text.kython'
+    'match': '(\\\\)(.*)$\\n?'
+  'magic_function_names':
+    'comment': 'these methods have magic interpretation by.kython and are generally called indirectly through syntactic constructs'
+    'match': '(?x)\\b(__(?:abs|add|and|bool|bytes|call|cmp|coerce|complex|contains|del|delattr|delete|delitem|delslice|dir|div|divmod|enter|eq|exit|float|floordiv|format|ge|get|getattr|getattribute|getitem|getslice|gt|hash|hex|iadd|iand|idiv|ifloordiv|ilshift|imatmul|imod|imul|index|init|instancecheck|int|invert|ior|ipow|irshift|isub|iter|itruediv|ixor|le|len|length_hint|long|lshift|lt|matmul|missing|mod|mul|ne|neg|next|new|nonzero|oct|or|pos|pow|radd|rand|rdiv|rdivmod|repr|reversed|rfloordiv|rlshift|rmatmul|rmod|rmul|ror|round|rpow|rrshift|rshift|rsub|rtruediv|rxor|set|setattr|setitem|setslice|str|sub|subclasscheck|truediv|unicode|xor)__)\\b'
+    'name': 'support.function.magic.kython'
+  'magic_variable_names':
+    'comment': 'magic variables which a class/module may have.'
+    'match': '\\b__(all|annotations|bases|class|closure|code|debug|dict|doc|file|func|globals|kwdefaults|members|metaclass|methods|module|name|qualname|self|slots|weakref)__\\b'
+    'name': 'support.variable.magic.kython'
+  'method_calls':
+    'patterns': [
+      {
+        'begin': '(\\.)([a-zA-Z_][a-zA-Z0-9_]*)\\s*(\\()'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.separator.method.period.kython'
+          '2':
+            'patterns': [
+              {
+                'include': '#function_names'
+              }
+            ]
+          '3':
+            'name': 'punctuation.definition.arguments.begin.bracket.round.kython'
+        'end': '\\)'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.arguments.end.bracket.round.kython'
+        'name': 'meta.method-call.kython'
+        'contentName': 'meta.method-call.arguments.kython'
+        'patterns': [
+          {
+            'include': '#keyword_arguments'
+          }
+          {
+            'match': ','
+            'name': 'punctuation.separator.arguments.kython'
+          }
+          {
+            'include': '$self'
+          }
+        ]
+      }
+    ]
+  'objects':
+    'patterns': [
+      {
+        # OBJ in OBJ.prop, OBJ.methodCall()
+        'match': '[A-Z][A-Z0-9_]*(?=\\s*\\.\\s*[a-zA-Z_][a-zA-Z0-9_]*)'
+        'name': 'constant.other.object.kython'
+      }
+      {
+        # obj in obj.prop, obj.methodCall()
+        'match': '[a-zA-Z_][a-zA-Z0-9_]*(?=\\s*\\.\\s*[a-zA-Z_][a-zA-Z0-9_]*)'
+        'name': 'variable.other.object.kython'
+      }
+    ]
+  'properties':
+    'patterns': [
+      {
+        # PROP1 in obj.PROP1.prop2, func().PROP1.prop2
+        'match': '(\\.)\\s*([A-Z][A-Z0-9_]*\\b\\$*)(?=\\s*\\.\\s*[a-zA-Z_][a-zA-Z0-9_]*)'
+        'captures':
+          '1':
+            'name': 'punctuation.separator.property.period.kython'
+          '2':
+            'name': 'constant.other.object.property.kython'
+      }
+      {
+        # prop1 in obj.prop1.prop2, func().prop1.prop2
+        'match': '(\\.)\\s*(\\$*[a-zA-Z_][a-zA-Z0-9_]*)(?=\\s*\\.\\s*[a-zA-Z_][a-zA-Z0-9_]*)'
+        'captures':
+          '1':
+            'name': 'punctuation.separator.property.period.kython'
+          '2':
+            'name': 'variable.other.object.property.kython'
+      }
+      {
+        # PROP in obj.PROP, func().PROP
+        'match': '(\\.)\\s*([A-Z][A-Z0-9_$]*\\b\\$*)'
+        'captures':
+          '1':
+            'name': 'punctuation.separator.property.period.kython'
+          '2':
+            'name': 'constant.other.property.kython'
+      }
+      {
+        # prop in obj.prop, func().prop
+        'match': '(\\.)\\s*(\\$*[a-zA-Z_][a-zA-Z0-9_]*)'
+        'captures':
+          '1':
+            'name': 'punctuation.separator.property.period.kython'
+          '2':
+            'name': 'variable.other.property.kython'
+      }
+      {
+        # 123illegal in obj.123illegal, func().123illegal
+        'match': '(\\.)\\s*([0-9][a-zA-Z0-9_]*)'
+        'captures':
+          '1':
+            'name': 'punctuation.separator.property.period.kython'
+          '2':
+            'name': 'invalid.illegal.identifier.kython'
+      }
+    ]
+  'nested_replacement_field':
+    'match': '''(?x)
+      {
+        (
+          (
+            \\d                       # integer
+            |
+            [a-zA-Z_]\\w*             # identifier
+          )
+          (
+            \\.[a-zA-Z_]\\w*          # attribute name
+            |
+            \\[[^\\]]+\\]             # element index
+          )*
+        )?
+        (![rsa])?                     # conversion
+        (
+          :
+          (.?[<>=^])?                 # fill followed by align
+          [+\\- ]?                    # sign (space at the end is intentional)
+          \\#?                        # alternate form
+          0?
+          \\d*                        # width
+          [_,]?                       # grouping option
+          (\\.\\d+)?                  # precision
+          [bcdeEfFgGnosxX%]?          # type
+        )?
+      }
+    '''
+    'name': 'constant.other.placeholder.kython'
+  'regular_expressions':
+    'comment': 'Changed disabled to 1 to turn off syntax highlighting in “r” strings.'
+    'disabled': 0
+    'patterns': [
+      {
+        'include': 'source.regexp.kython'
+      }
+    ]
+  'string_formatting':
+    'patterns': [
+      {
+        # https://docs.kython.org/2/library/stdtypes.html#string-formatting (deprecated)
+        'match': '''(?x)
+          %
+          (\\([a-zA-Z_]+\\))?             # mapping key
+          [#0+\\- ]?                      # conversion flags (space at the end is intentional)
+          (\\d+|\\*)?                     # minimum field width
+          (\\.(\\d+|\\*))?                # precision
+          [hlL]?                          # length modifier
+          [diouxXeEfFgGcrs%]              # conversion type
+        '''
+        'name': 'constant.other.placeholder.kython'
+      }
+      {
+        # https://docs.kython.org/3/library/string.html#format-string-syntax
+        'match': '''(?x)
+          {
+            (?:
+              (?:
+                \\d                       # integer
+                |
+                [a-zA-Z_]\\w*             # identifier
+              )
+              (?:
+                \\.[a-zA-Z_]\\w*          # attribute name
+                |
+                \\[[^\\]]+\\]             # element index
+              )*
+            )?
+            (?:![rsa])?                   # conversion
+            (?:
+              # Yup, this is disgusting. But top-level format specifiers can have nested replacement fields.
+              :
+              (?:(?:.|({[^}]*}))?(?:[<>=^]|({[^}]*})))?    # fill followed by align
+              (?:[+\\- ]|({[^}]*}))?                       # sign (space at the end is intentional)
+              (?:\\#|({[^}]*}))?                           # alternate form
+              (?:0|({[^}]*}))?
+              (?:\\d+|({[^}]*}))?                          # width
+              (?:[_,]|({[^}]*}))?                          # grouping option
+              (?:\\.(?:\\d+|({[^}]*}))|({[^}]*}))?         # precision
+              (?:[bcdeEfFgGnosxX%]|({[^}]*}))?             # type
+            )?
+          }
+        '''
+        'name': 'constant.other.placeholder.kython'
+        'captures':
+          '1': 'patterns': [{'include': '#nested_replacement_field'}]
+          '2': 'patterns': [{'include': '#nested_replacement_field'}]
+          '3': 'patterns': [{'include': '#nested_replacement_field'}]
+          '4': 'patterns': [{'include': '#nested_replacement_field'}]
+          '5': 'patterns': [{'include': '#nested_replacement_field'}]
+          '6': 'patterns': [{'include': '#nested_replacement_field'}]
+          '7': 'patterns': [{'include': '#nested_replacement_field'}]
+          '8': 'patterns': [{'include': '#nested_replacement_field'}]
+          '9': 'patterns': [{'include': '#nested_replacement_field'}]
+          '10': 'patterns': [{'include': '#nested_replacement_field'}]
+      }
+    ]
+  'string_interpolation':
+    # https://docs.kython.org/3/reference/lexical_analysis.html#f-strings
+    # and https://www.kython.org/dev/peps/pep-0498/
+    # Unlike string_formatting, string_interpolation can contain expressions
+    'begin': '{'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.interpolation.begin.bracket.curly.kython'
+    'end': '''(?x)(?!\\G)
+      (
+        (?:![rsa])?                   # conversion
+        (?:
+          # Yup, this is disgusting. But top-level format specifiers can have nested replacement fields.
+          :
+          (?:(?:.|({[^}]*}))?(?:[<>=^]|({[^}]*})))?    # fill followed by align
+          (?:[+\\- ]|({[^}]*}))?                       # sign (space at the end is intentional)
+          (?:\\#|({[^}]*}))?                           # alternate form
+          (?:0|({[^}]*}))?
+          (?:\\d+|({[^}]*}))?                          # width
+          (?:[_,]|({[^}]*}))?                          # grouping option
+          (?:\\.(?:\\d+|({[^}]*}))|({[^}]*}))?         # precision
+          (?:[bcdeEfFgGnosxX%]|({[^}]*}))?             # type
+        )?
+      )
+      (})
+    '''
+    'endCaptures':
+      '1':
+        'name': 'constant.other.placeholder.kython'
+      '2': 'patterns': [{'include': '#nested_replacement_field'}]
+      '3': 'patterns': [{'include': '#nested_replacement_field'}]
+      '4': 'patterns': [{'include': '#nested_replacement_field'}]
+      '5': 'patterns': [{'include': '#nested_replacement_field'}]
+      '6': 'patterns': [{'include': '#nested_replacement_field'}]
+      '7': 'patterns': [{'include': '#nested_replacement_field'}]
+      '8': 'patterns': [{'include': '#nested_replacement_field'}]
+      '9': 'patterns': [{'include': '#nested_replacement_field'}]
+      '10': 'patterns': [{'include': '#nested_replacement_field'}]
+      '11': 'patterns': [{'include': '#nested_replacement_field'}]
+      '12':
+        'name': 'punctuation.definition.interpolation.end.bracket.curly.kython'
+    'name': 'meta.interpolation.kython'
+    'contentName': 'meta.embedded.kython'
+    'patterns': [
+      {
+        'match': '\\\\'
+        'name': 'invalid.illegal.backslash.kython'
+      }
+      {
+        'include': '$self'
+      }
+    ]
+  'string_quoted_double':
+    'patterns': [
+      {
+        'begin': '([uU]r)(""")'
+        'beginCaptures':
+          '1':
+            'name': 'storage.type.string.kython'
+          '2':
+            'name': 'punctuation.definition.string.begin.kython'
+        'comment': 'single quoted unicode-raw string'
+        'end': '((?<=""")(")""|""")'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.string.end.kython'
+          '2':
+            'name': 'meta.empty-string.double.kython'
+        'name': 'string.quoted.double.block.unicode-raw-regex.kython'
+        'patterns': [
+          {
+            'include': '#string_formatting'
+          }
+          {
+            'include': '#escaped_unicode_char'
+          }
+          {
+            'include': '#escaped_char'
+          }
+          {
+            'include': '#regular_expressions'
+          }
+        ]
+      }
+      {
+        'begin': '([uU]R)(""")'
+        'beginCaptures':
+          '1':
+            'name': 'storage.type.string.kython'
+          '2':
+            'name': 'punctuation.definition.string.begin.kython'
+        'comment': 'single quoted unicode-raw string without regular expression highlighting'
+        'end': '((?<=""")(")""|""")'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.string.end.kython'
+          '2':
+            'name': 'meta.empty-string.double.kython'
+        'name': 'string.quoted.double.block.unicode-raw.kython'
+        'patterns': [
+          {
+            'include': '#string_formatting'
+          }
+          {
+            'include': '#escaped_unicode_char'
+          }
+          {
+            'include': '#escaped_char'
+          }
+        ]
+      }
+      {
+        'begin': '(r)(""")'
+        'beginCaptures':
+          '1':
+            'name': 'storage.type.string.kython'
+          '2':
+            'name': 'punctuation.definition.string.begin.kython'
+        'comment': 'double quoted raw string'
+        'end': '((?<=""")(")""|""")'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.string.end.kython'
+          '2':
+            'name': 'meta.empty-string.double.kython'
+        'name': 'string.quoted.double.block.raw-regex.kython'
+        'patterns': [
+          {
+            'include': '#string_formatting'
+          }
+          {
+            'include': '#escaped_char'
+          }
+          {
+            'include': '#regular_expressions'
+          }
+        ]
+      }
+      {
+        'begin': '(R)(""")'
+        'beginCaptures':
+          '1':
+            'name': 'storage.type.string.kython'
+          '2':
+            'name': 'punctuation.definition.string.begin.kython'
+        'comment': 'double quoted raw string'
+        'end': '((?<=""")(")""|""")'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.string.end.kython'
+          '2':
+            'name': 'meta.empty-string.double.kython'
+        'name': 'string.quoted.double.block.raw.kython'
+        'patterns': [
+          {
+            'include': '#string_formatting'
+          }
+          {
+            'include': '#escaped_char'
+          }
+        ]
+      }
+      {
+        'begin': '([uU])(""")'
+        'beginCaptures':
+          '1':
+            'name': 'storage.type.string.kython'
+          '2':
+            'name': 'punctuation.definition.string.begin.kython'
+        'comment': 'double quoted unicode string'
+        'end': '((?<=""")(")""|""")'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.string.end.kython'
+          '2':
+            'name': 'meta.empty-string.double.kython'
+        'name': 'string.quoted.double.block.unicode.kython'
+        'patterns': [
+          {
+            'include': '#string_formatting'
+          }
+          {
+            'include': '#escaped_unicode_char'
+          }
+          {
+            'include': '#escaped_char'
+          }
+        ]
+      }
+      {
+        'begin': '([fF])(""")'
+        'beginCaptures':
+          '1':
+            'name': 'storage.type.string.kython'
+          '2':
+            'name': 'punctuation.definition.string.begin.kython'
+        'end': '((?<=""")(")""|""")'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.string.end.kython'
+          '2':
+            'name': 'meta.empty-string.double.kython'
+        'name': 'string.quoted.double.block.format.kython'
+        'patterns': [
+          {
+            'include': '#escaped_char'
+          }
+          {
+            'include': '#string_interpolation'
+          }
+          {
+            'match': '}'
+            'name': 'invalid.illegal.closing-curly-bracket.kython'
+          }
+        ]
+      }
+      {
+        'begin': '([rR][fF]|[fF][rR])(""")'
+        'beginCaptures':
+          '1':
+            'name': 'storage.type.string.kython'
+          '2':
+            'name': 'punctuation.definition.string.begin.kython'
+        'end': '((?<=""")(")""|""")'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.string.end.kython'
+          '2':
+            'name': 'meta.empty-string.double.kython'
+        'name': 'string.quoted.double.block.raw-format.kython'
+        'patterns': [
+          {
+            'include': '#escaped_char'
+          }
+          {
+            'include': '#string_interpolation'
+          }
+          {
+            'match': '}'
+            'name': 'invalid.illegal.closing-curly-bracket.kython'
+          }
+        ]
+      }
+      {
+        'begin': '([bB])(""")'
+        'beginCaptures':
+          '1':
+            'name': 'storage.type.string.kython'
+          '2':
+            'name': 'punctuation.definition.string.begin.kython'
+        'end': '((?<=""")(")""|""")'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.string.end.kython'
+          '2':
+            'name': 'meta.empty-string.double.kython'
+        'name': 'string.quoted.double.block.binary.kython'
+        'patterns': [
+          {
+            'include': '#escaped_char'
+          }
+          {
+            'include': '#string_formatting'
+          }
+          {
+            'match': '[^\\x{01}-\\x{7f}]'
+            'name': 'invalid.illegal.character-out-of-range.kython'
+          }
+        ]
+      }
+      {
+        'begin': '([rR][bB]|[bB][rR])(""")'
+        'beginCaptures':
+          '1':
+            'name': 'storage.type.string.kython'
+          '2':
+            'name': 'punctuation.definition.string.begin.kython'
+        'end': '((?<=""")(")""|""")'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.string.end.kython'
+          '2':
+            'name': 'meta.empty-string.double.kython'
+        'name': 'string.quoted.double.block.raw-binary.kython'
+        'patterns': [
+          {
+            'include': '#escaped_char'
+          }
+          {
+            'include': '#string_formatting'
+          }
+          {
+            'match': '[^\\x{01}-\\x{7f}]'
+            'name': 'invalid.illegal.character-out-of-range.kython'
+          }
+        ]
+      }
+      {
+        'captures':
+          '1':
+            'name': 'storage.type.string.kython'
+          '2':
+            'name': 'punctuation.definition.string.begin.kython'
+          '3':
+            'patterns': [
+              {'include': '#string_formatting'}
+              {'include': '#escaped_unicode_char'}
+              {'include': '#escaped_char'}
+              {'include': '#regular_expressions'}
+            ]
+          '4':
+            'name': 'punctuation.definition.string.end.kython'
+        'comment': 'double-quoted raw string'
+        'match': '([uU]r)(")((?:[^"\\\\]|\\\\.)*)(")'
+        'name': 'string.quoted.double.single-line.unicode-raw-regex.kython'
+      }
+      {
+        'begin': '([uU]R)(")'
+        'beginCaptures':
+          '1':
+            'name': 'storage.type.string.kython'
+          '2':
+            'name': 'punctuation.definition.string.begin.kython'
+        'comment': 'double-quoted raw string'
+        'end': '((?<=")(")|")|(\\n)'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.string.end.kython'
+          '2':
+            'name': 'meta.empty-string.double.kython'
+          '3':
+            'name': 'invalid.illegal.unclosed-string.kython'
+        'name': 'string.quoted.double.single-line.unicode-raw.kython'
+        'patterns': [
+          {
+            'include': '#string_formatting'
+          }
+          {
+            'include': '#escaped_unicode_char'
+          }
+          {
+            'include': '#escaped_char'
+          }
+        ]
+      }
+      {
+        'captures':
+          '1':
+            'name': 'storage.type.string.kython'
+          '2':
+            'name': 'punctuation.definition.string.begin.kython'
+          '3':
+            'patterns': [
+              {'include': '#string_formatting'}
+              {'include': '#escaped_char'}
+              {'include': '#regular_expressions'}
+            ]
+          '4':
+            'name': 'punctuation.definition.string.end.kython'
+        'comment': 'double-quoted raw string'
+        'match': '(r)(")((?:[^"\\\\]|\\\\.)*)(")'
+        'name': 'string.quoted.double.single-line.raw-regex.kython'
+      }
+      {
+        'begin': '(R)(")'
+        'beginCaptures':
+          '1':
+            'name': 'storage.type.string.kython'
+          '2':
+            'name': 'punctuation.definition.string.begin.kython'
+        'comment': 'double-quoted raw string'
+        'end': '((?<=")(")|")|(\\n)'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.string.end.kython'
+          '2':
+            'name': 'meta.empty-string.double.kython'
+          '3':
+            'name': 'invalid.illegal.unclosed-string.kython'
+        'name': 'string.quoted.double.single-line.raw.kython'
+        'patterns': [
+          {
+            'include': '#string_formatting'
+          }
+          {
+            'include': '#escaped_char'
+          }
+        ]
+      }
+      {
+        'begin': '([uU])(")'
+        'beginCaptures':
+          '1':
+            'name': 'storage.type.string.kython'
+          '2':
+            'name': 'punctuation.definition.string.begin.kython'
+        'comment': 'double quoted unicode string'
+        'end': '((?<=")(")|")|(\\n)'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.string.end.kython'
+          '2':
+            'name': 'meta.empty-string.double.kython'
+          '3':
+            'name': 'invalid.illegal.unclosed-string.kython'
+        'name': 'string.quoted.double.single-line.unicode.kython'
+        'patterns': [
+          {
+            'include': '#string_formatting'
+          }
+          {
+            'include': '#escaped_unicode_char'
+          }
+          {
+            'include': '#escaped_char'
+          }
+        ]
+      }
+      {
+        'begin': '([fF])(")'
+        'beginCaptures':
+          '1':
+            'name': 'storage.type.string.kython'
+          '2':
+            'name': 'punctuation.definition.string.begin.kython'
+        'end': '((?<=")(")|")|(\\n)'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.string.end.kython'
+          '2':
+            'name': 'meta.empty-string.double.kython'
+          '3':
+            'name': 'invalid.illegal.unclosed-string.kython'
+        'name': 'string.quoted.double.single-line.format.kython'
+        'patterns': [
+          {
+            'include': '#escaped_char'
+          }
+          {
+            'include': '#string_interpolation'
+          }
+          {
+            'match': '}'
+            'name': 'invalid.illegal.closing-curly-bracket.kython'
+          }
+        ]
+      }
+      {
+        'begin': '([rR][fF]|[fF][rR])(")'
+        'beginCaptures':
+          '1':
+            'name': 'storage.type.string.kython'
+          '2':
+            'name': 'punctuation.definition.string.begin.kython'
+        'end': '((?<=")(")|")|(\\n)'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.string.end.kython'
+          '2':
+            'name': 'meta.empty-string.double.kython'
+          '3':
+            'name': 'invalid.illegal.unclosed-string.kython'
+        'name': 'string.quoted.double.single-line.raw-format.kython'
+        'patterns': [
+          {
+            'include': '#escaped_char'
+          }
+          {
+            'include': '#string_interpolation'
+          }
+          {
+            'match': '}'
+            'name': 'invalid.illegal.closing-curly-bracket.kython'
+          }
+        ]
+      }
+      {
+        'begin': '([bB])(")'
+        'beginCaptures':
+          '1':
+            'name': 'storage.type.string.kython'
+          '2':
+            'name': 'punctuation.definition.string.begin.kython'
+        'end': '((?<=")(")|")|(\\n)'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.string.end.kython'
+          '2':
+            'name': 'meta.empty-string.double.kython'
+          '3':
+            'name': 'invalid.illegal.unclosed-string.kython'
+        'name': 'string.quoted.double.single-line.binary.kython'
+        'patterns': [
+          {
+            'include': '#escaped_char'
+          }
+          {
+            'include': '#string_formatting'
+          }
+          {
+            'match': '[^\\x{01}-\\x{7f}]'
+            'name': 'invalid.illegal.character-out-of-range.kython'
+          }
+        ]
+      }
+      {
+        'begin': '([rR][bB]|[bB][rR])(")'
+        'beginCaptures':
+          '1':
+            'name': 'storage.type.string.kython'
+          '2':
+            'name': 'punctuation.definition.string.begin.kython'
+        'end': '((?<=")(")|")|(\\n)'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.string.end.kython'
+          '2':
+            'name': 'meta.empty-string.double.kython'
+          '3':
+            'name': 'invalid.illegal.unclosed-string.kython'
+        'name': 'string.quoted.double.single-line.raw-binary.kython'
+        'patterns': [
+          {
+            'include': '#escaped_char'
+          }
+          {
+            'include': '#string_formatting'
+          }
+          {
+            'match': '[^\\x{01}-\\x{7f}]'
+            'name': 'invalid.illegal.character-out-of-range.kython'
+          }
+        ]
+      }
+      {
+        'begin': '(""")'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.definition.string.begin.kython'
+        'comment': 'double quoted string'
+        'end': '((?<=""")(")""|""")'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.string.end.kython'
+          '2':
+            'name': 'meta.empty-string.double.kython'
+        'name': 'string.quoted.double.block.kython'
+        'patterns': [
+          {
+             'begin': '(?=\\s*(SELECT|INSERT|UPDATE|DELETE(?! \/)|CREATE|REPLACE|ALTER|WITH))'
+             'name': 'meta.embedded.sql'
+             'end': '(?=\\s*""")'
+             'patterns': [
+                {
+                  'include': 'source.sql'
+                }
+             ]
+          }
+        ]
+      }
+      {
+        'begin': '(")(?=\\s*(SELECT|INSERT|UPDATE|DELETE(?! \/)|CREATE|REPLACE|ALTER|WITH))'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.definition.string.begin.kython'
+        'comment': 'double quoted string'
+        'end': '((?<=")(")|")|(\\n)'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.string.end.kython'
+          '2':
+            'name': 'meta.empty-string.double.kython'
+          '3':
+            'name': 'invalid.illegal.unclosed-string.kython'
+        'name': 'string.quoted.double.single-line.sql.kython'
+        'contentName': 'meta.embedded.sql'
+        'patterns': [
+          {
+            'include': 'source.sql'
+          }
+        ]
+      }
+      {
+        'begin': '(""")'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.definition.string.begin.kython'
+        'comment': 'double quoted string'
+        'end': '((?<=""")(")""|""")'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.string.end.kython'
+          '2':
+            'name': 'meta.empty-string.double.kython'
+        'name': 'string.quoted.double.block.kython'
+        'patterns': [
+          {
+            'include': '#string_formatting'
+          }
+          {
+            'include': '#escaped_char'
+          }
+        ]
+      }
+      {
+        'begin': '(")'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.definition.string.begin.kython'
+        'comment': 'double quoted string'
+        'end': '((?<=")(")|")|(\\n)'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.string.end.kython'
+          '2':
+            'name': 'meta.empty-string.double.kython'
+          '3':
+            'name': 'invalid.illegal.unclosed-string.kython'
+        'name': 'string.quoted.double.single-line.kython'
+        'patterns': [
+          {
+            'include': '#string_formatting'
+          }
+          {
+            'include': '#escaped_char'
+          }
+        ]
+      }
+    ]
+  'strings':
+    'patterns': [
+      {
+        'include': '#string_quoted_double'
+      }
+    ]

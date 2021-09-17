@@ -1,0 +1,4 @@
+'.source.kython':
+  'editor':
+    'commentStart': '// '
+    'commentEnd': ''

@@ -1,20 +1,47 @@
 {
-  "name": "language-kython",
-  "version": "0.9.0",
-  "engines": {
-    "atom": "*"
+  "_from": "https://www.atom.io/api/packages/language-kython/versions/0.9.0/tarball",
+  "_id": "language-kython@0.9.0",
+  "_inBundle": false,
+  "_integrity": "sha512-R9DVZiEvmZV8Q+80duXfs4nGclqsoYT5zgC/46XB9X1hnIbWZL3PmeMEYC8mpvXfseaxvkH01tMyIiBpF7LHsg==",
+  "_location": "/language-kython",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "https://www.atom.io/api/packages/language-kython/versions/0.9.0/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/language-kython/versions/0.9.0/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/language-kython/versions/0.9.0/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/language-kython/versions/0.9.0/tarball"
   },
-  "description": "Kython language support in Atom",
-  "keywords": [
-    "tree-sitter"
+  "_requiredBy": [
+    "#USER",
+    "/"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/trihedral/language-kython.git"
+  "_resolved": "https://www.atom.io/api/packages/language-kython/versions/0.9.0/tarball",
+  "_shasum": "72344d21da2ac50f7413395936195d6cbc428d1c",
+  "_spec": "https://www.atom.io/api/packages/language-kython/versions/0.9.0/tarball",
+  "_where": "C:\\Users\\kyled\\AppData\\Local\\Temp\\apm-install-dir-2021816-1784-1wmb8mn.z4lp",
+  "bugs": {
+    "url": "https://github.com/trihedral/language-kython/issues"
   },
-  "license": "MIT",
+  "bundleDependencies": false,
   "dependencies": {
     "atom-grammar-test": "^0.6.4",
     "tree-sitter-kython": "^1.0.2"
-  }
+  },
+  "deprecated": false,
+  "description": "Kython language support in Atom",
+  "engines": {
+    "atom": "*"
+  },
+  "homepage": "https://github.com/trihedral/language-kython#readme",
+  "keywords": [
+    "tree-sitter"
+  ],
+  "license": "MIT",
+  "name": "language-kython",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trihedral/language-kython.git"
+  },
+  "version": "0.9.0"
 }
