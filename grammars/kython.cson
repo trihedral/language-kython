@@ -1,7 +1,7 @@
 'scopeName': 'source.kython'
 'name': 'Kython'
 'fileTypes': [
-  'py'
+  'ky'
 ]
 
 'firstLineMatch': '#!.*kython[0-9\.]*$'
